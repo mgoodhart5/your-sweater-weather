@@ -44,9 +44,14 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	__webpack_require__(1);
+
+	$.get("https://my-sweater-weather.herokuapp.com/api/v1/backgrounds?location=denver,co", function (data, status) {
+	  debugger;
+	  console.log("" + data);
+	}); // This file is in the entry point in your webpack config.
 
 /***/ }),
 /* 1 */
@@ -83,7 +88,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: pink; }\n", ""]);
+	exports.push([module.id, "body {\n  text-align: center;\n  background-color: #52796F; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n", ""]);
 
 	// exports
 

@@ -1,9 +1,70 @@
 body {
-  // text-align: center;
   background-color: #52796F;
+  font-family: sans-serif;
 }
 .weather-inquiry {
   text-align: center;
+}
+#currentWeather {
+  float: left;
+  display: inline-block;
+  border: 2px solid #2F3E46;
+  background-color: #84A98C;
+  border-radius: 15px;
+  padding: 10px;
+  margin-right: 10px;
+  margin-left: 40px;
+  margin-top: 100px;
+  margin-bottom: 10px;
+  height: 260px;
+  width: 40vw;
+}
+.currentWeatherMain {
+  display: inline-block;
+  text-align: center;
+  padding: 5px;
+  margin: 10px;
+}
+.currentWeatherInfo {
+  display: inline-block;
+  text-align: center;
+  padding-left: 100px;
+  margin: 10px;
+}
+.detailsInfo {
+  display: inline-block;
+  text-align: center;
+  padding-left: 50px;
+  padding-bottom: 5px;
+  margin: 5px;
+}
+.detailsSpecific {
+  display: inline-block;
+  text-align: center;
+  padding-left: 240px;
+  margin: 5px;
+}
+.currentWeatherSummary {
+  padding-bottom: 15px;
+  margin: 10px;
+  text-align: center;
+}
+.daySummaries {
+  padding-bottom: 15px;
+  margin: 10px;
+  text-align: center;
+}
+#currentWeatherDetails {
+  float: right;
+  border: 2px solid #2F3E46;
+  background-color: #84A98C;
+  border-radius: 15px;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 40px;
+  margin-top: 100px;
+  height: 260px;
+  width: 40vw;
 }
 #cityStateData {
   margin: 20px;
@@ -19,6 +80,16 @@ body {
   color: #CAD2C5;
 }
 #submitCityStateBtn:hover {
+  background-color: #84898C;
+  color: #CAD2C5;
+}
+#searchAgainBtn {
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #354F52;
+  color: #CAD2C5;
+}
+#searchAgainBtn:hover {
   background-color: #84898C;
   color: #CAD2C5;
 }

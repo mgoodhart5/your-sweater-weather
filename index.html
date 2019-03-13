@@ -12,15 +12,39 @@
     <input id="submitCityStateBtn" type="submit" value="Search For Weather">
   </form>
   <div id="currentWeather">
-    <p class="current_temp"></p>
-    <p class="date"></p><p class="current_time"></p>
-    <p class="high"></p>
-    <p class="low"></p>
-    <p class="location"></p><input id="searchAgain" type="submit" value="Change Location">
-    <p class="summary"></p>
+    <div class="currentWeatherMain">
+      <p class="icon"></p>
+      <h1 class="current-temp"></h1>
+      <p class="high-low"></p>
+    </div>
+    <div class="currentWeatherInfo">
+      <h1 class="location"></h1>
+      <input id="searchAgainBtn" type="submit" value="Change Location">
+      <p class="date-time"></p>
+    </div><br>
+    <div class="currentWeatherSummary">
+      <p class="summary"></p>
+    </div>
+  </div>
+  <div id="currentWeatherDetails">
+    <div class="detailsInfo">
+      <h3 class="details-summary"></h3><br>
+      <p></p><br>
+      <p class="details-icon"></p>
+    </div>
+    <div class="detailsSpecific">
+      <p class="real-feel"><b>Real Feel: </b></p>
+      <p class="humidity"><b>Humidity: </b></p>
+      <p class="visibility"><b>Visibility: </b></p>
+      <p class="uv-index"><b>UV Index: </b></p>
+    </div>
+    <div class="daySummaries">
+      <p class="summary-today"><b>Today: </b></p>
+      <p class="summary-tonight"><b>Tonight: </b></p>
+    </div>
   </div>
 
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
   <script src="main.bundle.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.min.js'></script>
 </body>

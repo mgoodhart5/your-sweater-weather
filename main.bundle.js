@@ -49,25 +49,37 @@
 	__webpack_require__(1);
 
 	$(document).ready(function () {
-	  $("#searchAgain").hide();
+	  $("#searchAgainBtn").hide();
+	  $("#currentWeather").hide();
+	  $("#currentWeatherDetails").hide();
 	  $("#submitCityStateBtn").click(function (event) {
 	    event.preventDefault();
 	    $("form").hide();
-	    $("#searchAgain").show();
+	    $("#searchAgainBtn").show();
+	    $("#currentWeather").show();
+	    $("#currentWeatherDetails").show();
 	    var cityState = $("#cityStateData").val();
 	    $.get("https://my-sweater-weather.herokuapp.com/api/v1/forecast?location=" + cityState, function (data, status) {
 	      var currentLocation = data["data"]["attributes"]["current_weather"];
-	      $(".current_temp").text(currentLocation["current_temp"]);
-	      $(".current_time").text(currentLocation["current_time"]);
-	      $(".high").text(currentLocation["high"] + " degrees");
-	      $(".low").text(currentLocation["low"] + " degrees");
+	      $(".current-temp").text(currentLocation["current_temp"]);
+	      $(".current-time").text(currentLocation["current_time"]);
+	      $(".high-low").text("High: " + currentLocation["high"] + "\xB0 Low: " + currentLocation["low"] + "\xB0");
+	      $(".low").text(+" degrees");
 	      $(".location").text(currentLocation["location"]);
 	      $(".summary").text(currentLocation["summary"]);
-	      $(".date").text(currentLocation["today"]);
+	      $(".date-time").text(currentLocation["today"] + ", " + currentLocation["current_time"]);
+	      $(".icon").text(currentLocation["icon"]);
 	      $("#searchAgain").click(function (event) {
 	        event.preventDefault();
 	        $("form").show();
 	      });
+	      var currentWeatherDetails = data["data"]["attributes"]["current_weather_details"];
+	      debugger;
+	      $(".details-summary").text(currentWeatherDetails["summary"]);
+	      $(".real-feel").append(currentWeatherDetails["real_feel"] + "\xB0");
+	      $(".humidity").append(currentWeatherDetails["humidity"] + "%");
+	      $(".visibility").append(currentWeatherDetails["visibility"] + " miles");
+	      $(".details-icon").text(currentWeatherDetails["icon"]);
 	    });
 	  });
 	}); // This file is in the entry point in your webpack config.
@@ -107,7 +119,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: #52796F; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n", ""]);
+	exports.push([module.id, "body {\n  background-color: #52796F;\n  font-family: sans-serif; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#currentWeather {\n  float: left;\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin-right: 10px;\n  margin-left: 40px;\n  margin-top: 100px;\n  margin-bottom: 10px;\n  height: 250px;\n  width: 40vw; }\n\n.currentWeatherMain {\n  display: inline-block;\n  align-items: left;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.currentWeatherInfo {\n  display: inline-block;\n  align-items: right;\n  text-align: center;\n  padding-left: 100px;\n  margin: 10px; }\n\n.detailsInfo {\n  display: inline-block;\n  align-items: left;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.detailsSpecific {\n  display: inline-block;\n  align-items: right;\n  text-align: center;\n  padding-left: 125px;\n  margin: 10px; }\n\n.currentWeatherSummary {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n#currentWeatherDetails {\n  float: right;\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin-left: 10px;\n  margin-right: 40px;\n  margin-top: 100px;\n  height: 250px;\n  width: 40vw; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#searchAgainBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#searchAgainBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n", ""]);
 
 	// exports
 

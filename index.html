@@ -7,6 +7,9 @@
   <script src="./lib/jquery.js"></script>
 </head>
 <body>
+  <nav>
+    <h1>Your Sweater Weather</h1>
+  </nav>
   <form class="weather-inquiry">
     <input id="cityStateData" type="text" name="city-state" placeholder="Enter City, State"><br>
     <input id="submitCityStateBtn" type="submit" value="Search For Weather">
@@ -43,9 +46,38 @@
       <p class="summary-tonight"></p>
     </div>
   </div>
-  <div class="hourlyWeather">
-    <p></p>
-  </div>
+  <table id="hourlyWeather">
+    <tr class="hourly-icon-info">
+      <td class="first"></td>
+      <td class="second"></td>
+      <td class="third"></td>
+      <td class="fourth"></td>
+      <td class="fifth"></td>
+    </tr>
+    <tr class="hourly-time-info">
+      <td class="first-t"></td>
+      <td class="second-t"></td>
+      <td class="third-t"></td>
+      <td class="fourth-t"></td>
+      <td class="fifth-t"></td>
+    </tr>
+    <tr class="hourly-temp-info">
+      <td class="first-temp"></td>
+      <td class="second-temp"></td>
+      <td class="third-temp"></td>
+      <td class="fourth-temp"></td>
+      <td class="fifth-temp"></td>
+    </tr>
+  </table>
+  <table id="dailyWeather">
+    <tr class="daily-day">
+      <td class="first-day"></td>
+      <td class="second-day"></td>
+      <td class="third-day"></td>
+      <td class="fourth-day"></td>
+      <td class="fifth-day"></td>
+    </tr>
+  </table>
 
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
   <script src="main.bundle.js"></script>

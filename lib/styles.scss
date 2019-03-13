@@ -16,38 +16,40 @@ body {
   margin-left: 40px;
   margin-top: 100px;
   margin-bottom: 10px;
-  height: 250px;
+  height: 260px;
   width: 40vw;
 }
 .currentWeatherMain {
   display: inline-block;
-  align-items: left;
   text-align: center;
   padding: 5px;
   margin: 10px;
 }
 .currentWeatherInfo {
   display: inline-block;
-  align-items: right;
   text-align: center;
   padding-left: 100px;
   margin: 10px;
 }
 .detailsInfo {
   display: inline-block;
-  align-items: left;
   text-align: center;
-  padding: 5px;
-  margin: 10px;
+  padding-left: 50px;
+  padding-bottom: 5px;
+  margin: 5px;
 }
 .detailsSpecific {
   display: inline-block;
-  align-items: right;
   text-align: center;
-  padding-left: 125px;
-  margin: 10px;
+  padding-left: 240px;
+  margin: 5px;
 }
 .currentWeatherSummary {
+  padding-bottom: 15px;
+  margin: 10px;
+  text-align: center;
+}
+.daySummaries {
   padding-bottom: 15px;
   margin: 10px;
   text-align: center;
@@ -61,7 +63,7 @@ body {
   margin-left: 10px;
   margin-right: 40px;
   margin-top: 100px;
-  height: 250px;
+  height: 260px;
   width: 40vw;
 }
 #cityStateData {

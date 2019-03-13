@@ -61,10 +61,9 @@
 	    var cityState = $("#cityStateData").val();
 	    $.get("https://my-sweater-weather.herokuapp.com/api/v1/forecast?location=" + cityState, function (data, status) {
 	      var currentLocation = data["data"]["attributes"]["current_weather"];
-	      $(".current-temp").text(currentLocation["current_temp"]);
+	      $(".current-temp").text(Math.ceil(currentLocation["current_temp"]));
 	      $(".current-time").text(currentLocation["current_time"]);
-	      $(".high-low").text("High: " + currentLocation["high"] + "\xB0 Low: " + currentLocation["low"] + "\xB0");
-	      $(".low").text(+" degrees");
+	      $(".high-low").text("High: " + Math.ceil(currentLocation["high"]) + "\xB0 Low: " + Math.ceil(currentLocation["low"]) + "\xB0");
 	      $(".location").text(currentLocation["location"]);
 	      $(".summary").text(currentLocation["summary"]);
 	      $(".date-time").text(currentLocation["today"] + ", " + currentLocation["current_time"]);
@@ -75,7 +74,7 @@
 	      });
 	      var currentWeatherDetails = data["data"]["attributes"]["current_weather_details"];
 	      $(".details-summary").text(currentWeatherDetails["summary"]);
-	      $(".real-feel").append(currentWeatherDetails["real_feel"] + "\xB0");
+	      $(".real-feel").append(Math.ceil(currentWeatherDetails["real_feel"]) + "\xB0");
 	      $(".humidity").append(currentWeatherDetails["humidity"] + "%");
 	      $(".visibility").append(currentWeatherDetails["visibility"] + " miles");
 	      $(".uv-index").append(currentWeatherDetails["uv_index"]);

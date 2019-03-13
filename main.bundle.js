@@ -48,9 +48,28 @@
 
 	__webpack_require__(1);
 
-	$.get("https://my-sweater-weather.herokuapp.com/api/v1/backgrounds?location=denver,co", function (data, status) {
-	  debugger;
-	  console.log("" + data);
+	$(document).ready(function () {
+	  $("#searchAgain").hide();
+	  $("#submitCityStateBtn").click(function (event) {
+	    event.preventDefault();
+	    $("form").hide();
+	    $("#searchAgain").show();
+	    var cityState = $("#cityStateData").val();
+	    $.get("https://my-sweater-weather.herokuapp.com/api/v1/forecast?location=" + cityState, function (data, status) {
+	      var currentLocation = data["data"]["attributes"]["current_weather"];
+	      $(".current_temp").text(currentLocation["current_temp"]);
+	      $(".current_time").text(currentLocation["current_time"]);
+	      $(".high").text(currentLocation["high"] + " degrees");
+	      $(".low").text(currentLocation["low"] + " degrees");
+	      $(".location").text(currentLocation["location"]);
+	      $(".summary").text(currentLocation["summary"]);
+	      $(".date").text(currentLocation["today"]);
+	      $("#searchAgain").click(function (event) {
+	        event.preventDefault();
+	        $("form").show();
+	      });
+	    });
+	  });
 	}); // This file is in the entry point in your webpack config.
 
 /***/ }),
@@ -88,7 +107,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  text-align: center;\n  background-color: #52796F; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n", ""]);
+	exports.push([module.id, "body {\n  background-color: #52796F; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n", ""]);
 
 	// exports
 

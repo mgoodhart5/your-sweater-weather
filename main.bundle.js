@@ -52,12 +52,16 @@
 	  $("#searchAgainBtn").hide();
 	  $("#currentWeather").hide();
 	  $("#currentWeatherDetails").hide();
+	  $("#hourlyWeather").hide();
+	  $("#dailyWeather").hide();
 	  $("#submitCityStateBtn").click(function (event) {
 	    event.preventDefault();
 	    $("form").hide();
 	    $("#searchAgainBtn").show();
 	    $("#currentWeather").show();
 	    $("#currentWeatherDetails").show();
+	    $("#hourlyWeather").show();
+	    $("#dailyWeather").show();
 	    var cityState = $("#cityStateData").val();
 	    $.get("https://my-sweater-weather.herokuapp.com/api/v1/backgrounds?location=" + cityState, function (data, status) {
 	      var currentBackground = data["data"][0]["attributes"]["source_url"];
@@ -75,6 +79,11 @@
 	      $("#searchAgainBtn").click(function (event) {
 	        event.preventDefault();
 	        $("form").show();
+	        $("#searchAgainBtn").hide();
+	        $("#currentWeather").hide();
+	        $("#currentWeatherDetails").hide();
+	        $("#hourlyWeather").hide();
+	        $("#dailyWeather").hide();
 	      });
 	      var currentWeatherDetails = data["data"]["attributes"]["current_weather_details"];
 	      $(".details-summary").text(currentWeatherDetails["summary"]);
@@ -85,9 +94,27 @@
 	      $(".summary-today").html("<b>Today: </b>" + currentWeatherDetails["today_summary"]);
 	      $(".summary-tonight").html("<b>Tonight: </b>" + currentWeatherDetails["tonight_summary"]);
 	      $(".details-icon").text(currentWeatherDetails["icon"]);
-	      // let hourlyWeather = data["data"]["attributes"]["hourly_weather"]
-	      // debugger;
-	      // console.log(hourlyWeather)
+	      var hourlyWeather = data["data"]["attributes"]["hourly_weather"];
+	      $(".first").text(hourlyWeather[0]["icon"]);
+	      $(".second").text(hourlyWeather[1]["icon"]);
+	      $(".third").text(hourlyWeather[2]["icon"]);
+	      $(".fourth").text(hourlyWeather[3]["icon"]);
+	      $(".fifth").text(hourlyWeather[4]["icon"]);
+	      $(".first-t").text(hourlyWeather[0]["time"]);
+	      $(".second-t").text(hourlyWeather[1]["time"]);
+	      $(".third-t").text(hourlyWeather[2]["time"]);
+	      $(".fourth-t").text(hourlyWeather[3]["time"]);
+	      $(".fifth-t").text(hourlyWeather[4]["time"]);
+	      $(".first-temp").text(Math.ceil(hourlyWeather[0]["temperature"]));
+	      $(".second-temp").text(Math.ceil(hourlyWeather[1]["temperature"]));
+	      $(".third-temp").text(Math.ceil(hourlyWeather[2]["temperature"]));
+	      $(".fourth-temp").text(Math.ceil(hourlyWeather[3]["temperature"]));
+	      $(".fifth-temp").text(Math.ceil(hourlyWeather[4]["temperature"]));
+	      // $.each(hourlyWeather, function (index, value) {
+	      //   $(".hourly-info").html(`<td class="round-${index}">${value["icon"]}</td>`);
+	      //   $(".hourly-info").html(`<td class="round-${index}">${value["time"]}</td>`);
+	      //   $(".hourly-info").html(`<td class="round-${index}">${Math.ceil(value["temperature"]}°</td>`);
+	      // });
 	    });
 	  });
 	}); // This file is in the entry point in your webpack config.
@@ -127,7 +154,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: #52796F;\n  font-family: sans-serif;\n  background-repeat: no-repeat;\n  background-size: cover; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#currentWeather {\n  float: left;\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin-right: 10px;\n  margin-left: 40px;\n  margin-top: 100px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 40vw; }\n\n.currentWeatherMain {\n  display: inline-block;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.currentWeatherInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 100px;\n  margin: 10px; }\n\n.detailsInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 50px;\n  padding-bottom: 5px;\n  margin: 5px; }\n\n.detailsSpecific {\n  display: inline-block;\n  text-align: center;\n  padding-left: 200px;\n  margin: 5px; }\n\n.currentWeatherSummary {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n.daySummaries {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n#currentWeatherDetails {\n  float: right;\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin-left: 10px;\n  margin-right: 40px;\n  margin-top: 100px;\n  height: 260px;\n  width: 40vw; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#searchAgainBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#searchAgainBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n", ""]);
+	exports.push([module.id, "body {\n  background-color: #52796F;\n  font-family: sans-serif;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-attachment: fixed;\n  height: 200%; }\n\nnav {\n  text-align: center; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#currentWeather {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin-right: 20px;\n  margin-left: 10px;\n  margin-top: 50px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 40vw;\n  left: 20px; }\n\n.currentWeatherMain {\n  display: inline-block;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.currentWeatherInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 100px;\n  margin: 10px; }\n\n.detailsInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 20px;\n  padding-bottom: 5px;\n  margin: 5px; }\n\n.detailsSpecific {\n  display: inline-block;\n  text-align: center;\n  padding-left: 150px;\n  margin: 5px; }\n\n.currentWeatherSummary {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n.daySummaries {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n#currentWeatherDetails {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin-left: 165px;\n  margin-right: 15px;\n  margin-top: 50px;\n  height: 260px;\n  width: 40vw;\n  right: 20px; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#searchAgainBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#searchAgainBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#hourlyWeather {\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin: 10px;\n  height: 120px;\n  width: 97vw;\n  text-align: center; }\n\n#dailyWeather {\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  text-align: center;\n  padding: 10px;\n  margin: 10px;\n  height: 150px;\n  width: 97vw; }\n", ""]);
 
 	// exports
 

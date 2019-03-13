@@ -69,16 +69,18 @@
 	      $(".summary").text(currentLocation["summary"]);
 	      $(".date-time").text(currentLocation["today"] + ", " + currentLocation["current_time"]);
 	      $(".icon").text(currentLocation["icon"]);
-	      $("#searchAgain").click(function (event) {
+	      $("#searchAgainBtn").click(function (event) {
 	        event.preventDefault();
 	        $("form").show();
 	      });
 	      var currentWeatherDetails = data["data"]["attributes"]["current_weather_details"];
-	      debugger;
 	      $(".details-summary").text(currentWeatherDetails["summary"]);
 	      $(".real-feel").append(currentWeatherDetails["real_feel"] + "\xB0");
 	      $(".humidity").append(currentWeatherDetails["humidity"] + "%");
 	      $(".visibility").append(currentWeatherDetails["visibility"] + " miles");
+	      $(".uv-index").append(currentWeatherDetails["uv_index"]);
+	      $(".summary-today").append(currentWeatherDetails["today_summary"]);
+	      $(".summary-tonight").append(currentWeatherDetails["tonight_summary"]);
 	      $(".details-icon").text(currentWeatherDetails["icon"]);
 	    });
 	  });
@@ -119,7 +121,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: #52796F;\n  font-family: sans-serif; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#currentWeather {\n  float: left;\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin-right: 10px;\n  margin-left: 40px;\n  margin-top: 100px;\n  margin-bottom: 10px;\n  height: 250px;\n  width: 40vw; }\n\n.currentWeatherMain {\n  display: inline-block;\n  align-items: left;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.currentWeatherInfo {\n  display: inline-block;\n  align-items: right;\n  text-align: center;\n  padding-left: 100px;\n  margin: 10px; }\n\n.detailsInfo {\n  display: inline-block;\n  align-items: left;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.detailsSpecific {\n  display: inline-block;\n  align-items: right;\n  text-align: center;\n  padding-left: 125px;\n  margin: 10px; }\n\n.currentWeatherSummary {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n#currentWeatherDetails {\n  float: right;\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin-left: 10px;\n  margin-right: 40px;\n  margin-top: 100px;\n  height: 250px;\n  width: 40vw; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#searchAgainBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#searchAgainBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n", ""]);
+	exports.push([module.id, "body {\n  background-color: #52796F;\n  font-family: sans-serif; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#currentWeather {\n  float: left;\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin-right: 10px;\n  margin-left: 40px;\n  margin-top: 100px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 40vw; }\n\n.currentWeatherMain {\n  display: inline-block;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.currentWeatherInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 100px;\n  margin: 10px; }\n\n.detailsInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 50px;\n  padding-bottom: 5px;\n  margin: 5px; }\n\n.detailsSpecific {\n  display: inline-block;\n  text-align: center;\n  padding-left: 240px;\n  margin: 5px; }\n\n.currentWeatherSummary {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n.daySummaries {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n#currentWeatherDetails {\n  float: right;\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin-left: 10px;\n  margin-right: 40px;\n  margin-top: 100px;\n  height: 260px;\n  width: 40vw; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#searchAgainBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#searchAgainBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n", ""]);
 
 	// exports
 

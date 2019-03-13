@@ -1,6 +1,8 @@
 body {
   background-color: #52796F;
   font-family: sans-serif;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .weather-inquiry {
   text-align: center;
@@ -41,7 +43,7 @@ body {
 .detailsSpecific {
   display: inline-block;
   text-align: center;
-  padding-left: 240px;
+  padding-left: 200px;
   margin: 5px;
 }
 .currentWeatherSummary {

@@ -100,21 +100,43 @@
 	      $(".third").text(hourlyWeather[2]["icon"]);
 	      $(".fourth").text(hourlyWeather[3]["icon"]);
 	      $(".fifth").text(hourlyWeather[4]["icon"]);
-	      $(".first-t").text(hourlyWeather[0]["time"]);
-	      $(".second-t").text(hourlyWeather[1]["time"]);
-	      $(".third-t").text(hourlyWeather[2]["time"]);
-	      $(".fourth-t").text(hourlyWeather[3]["time"]);
-	      $(".fifth-t").text(hourlyWeather[4]["time"]);
-	      $(".first-temp").text(Math.ceil(hourlyWeather[0]["temperature"]));
-	      $(".second-temp").text(Math.ceil(hourlyWeather[1]["temperature"]));
-	      $(".third-temp").text(Math.ceil(hourlyWeather[2]["temperature"]));
-	      $(".fourth-temp").text(Math.ceil(hourlyWeather[3]["temperature"]));
-	      $(".fifth-temp").text(Math.ceil(hourlyWeather[4]["temperature"]));
-	      // $.each(hourlyWeather, function (index, value) {
-	      //   $(".hourly-info").html(`<td class="round-${index}">${value["icon"]}</td>`);
-	      //   $(".hourly-info").html(`<td class="round-${index}">${value["time"]}</td>`);
-	      //   $(".hourly-info").html(`<td class="round-${index}">${Math.ceil(value["temperature"]}°</td>`);
-	      // });
+	      $(".first-t").html("<b>" + hourlyWeather[0]["time"] + "</b>");
+	      $(".second-t").html("<b>" + hourlyWeather[1]["time"] + "</b>");
+	      $(".third-t").html("<b>" + hourlyWeather[2]["time"] + "</b>");
+	      $(".fourth-t").html("<b>" + hourlyWeather[3]["time"] + "</b>");
+	      $(".fifth-t").html("<b>" + hourlyWeather[4]["time"] + "</b>");
+	      $(".first-temp").text(Math.ceil(hourlyWeather[0]["temperature"]) + "\xB0");
+	      $(".second-temp").text(Math.ceil(hourlyWeather[1]["temperature"]) + "\xB0");
+	      $(".third-temp").text(Math.ceil(hourlyWeather[2]["temperature"]) + "\xB0");
+	      $(".fourth-temp").text(Math.ceil(hourlyWeather[3]["temperature"]) + "\xB0");
+	      $(".fifth-temp").text(Math.ceil(hourlyWeather[4]["temperature"]) + "\xB0");
+	      var dailyWeather = data["data"]["attributes"]["daily_weather"];
+	      debugger;
+	      $(".first-day").html("<b>" + dailyWeather[1]["day"] + "</b>");
+	      $(".second-day").html("<b>" + dailyWeather[2]["day"] + "</b>");
+	      $(".third-day").html("<b>" + dailyWeather[3]["day"] + "</b>");
+	      $(".fourth-day").html("<b>" + dailyWeather[4]["day"] + "</b>");
+	      $(".fifth-day").html("<b>" + dailyWeather[5]["day"] + "</b>");
+	      $(".first-icon").text(dailyWeather[1]["icon"]);
+	      $(".second-icon").text(dailyWeather[2]["icon"]);
+	      $(".third-icon").text(dailyWeather[3]["icon"]);
+	      $(".fourth-icon").text(dailyWeather[4]["icon"]);
+	      $(".fifth-icon").text(dailyWeather[5]["icon"]);
+	      $(".first-high").html("<b>\u2191</b> " + dailyWeather[1]["temperature_high"] + "\xB0");
+	      $(".second-high").html("<b>\u2191</b> " + dailyWeather[2]["temperature_high"] + "\xB0");
+	      $(".third-high").html("<b>\u2191</b> " + dailyWeather[3]["temperature_high"] + "\xB0");
+	      $(".fourth-high").html("<b>\u2191</b> " + dailyWeather[4]["temperature_high"] + "\xB0");
+	      $(".fifth-high").html("<b>\u2191</b> " + dailyWeather[5]["temperature_high"] + "\xB0");
+	      $(".first-low").html("<b>\u2193</b> " + dailyWeather[1]["temperature_low"] + "\xB0");
+	      $(".second-low").html("<b>\u2193</b> " + dailyWeather[2]["temperature_low"] + "\xB0");
+	      $(".third-low").html("<b>\u2193</b> " + dailyWeather[3]["temperature_low"] + "\xB0");
+	      $(".fourth-low").html("<b>\u2193</b> " + dailyWeather[4]["temperature_low"] + "\xB0");
+	      $(".fifth-low").html("<b>\u2193</b> " + dailyWeather[5]["temperature_low"] + "\xB0");
+	      $(".first-precip").text("Precip Probability " + dailyWeather[1]["precip_probability"] + "%");
+	      $(".second-precip").text("Precip Probability " + dailyWeather[2]["precip_probability"] + "%");
+	      $(".third-precip").text("Precip Probability " + dailyWeather[3]["precip_probability"] + "%");
+	      $(".fourth-precip").text("Precip Probability " + dailyWeather[4]["precip_probability"] + "%");
+	      $(".fifth-precip").text("Precip Probability " + dailyWeather[5]["precip_probability"] + "%");
 	    });
 	  });
 	}); // This file is in the entry point in your webpack config.
@@ -154,7 +176,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: #52796F;\n  font-family: sans-serif;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-attachment: fixed;\n  height: 200%; }\n\nnav {\n  text-align: center; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#currentWeather {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin-right: 20px;\n  margin-left: 10px;\n  margin-top: 50px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 40vw;\n  left: 20px; }\n\n.currentWeatherMain {\n  display: inline-block;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.currentWeatherInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 100px;\n  margin: 10px; }\n\n.detailsInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 20px;\n  padding-bottom: 5px;\n  margin: 5px; }\n\n.detailsSpecific {\n  display: inline-block;\n  text-align: center;\n  padding-left: 150px;\n  margin: 5px; }\n\n.currentWeatherSummary {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n.daySummaries {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n#currentWeatherDetails {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin-left: 165px;\n  margin-right: 15px;\n  margin-top: 50px;\n  height: 260px;\n  width: 40vw;\n  right: 20px; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#searchAgainBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#searchAgainBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#hourlyWeather {\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  padding: 10px;\n  margin: 10px;\n  height: 120px;\n  width: 97vw;\n  text-align: center; }\n\n#dailyWeather {\n  border: 2px solid #2F3E46;\n  background-color: #84A98C;\n  border-radius: 15px;\n  text-align: center;\n  padding: 10px;\n  margin: 10px;\n  height: 150px;\n  width: 97vw; }\n", ""]);
+	exports.push([module.id, "body {\n  background-color: #52796F;\n  font-family: sans-serif;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-attachment: fixed;\n  height: 200%; }\n\nnav {\n  text-align: center; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#currentWeather {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin-right: 20px;\n  margin-left: 5px;\n  margin-top: 50px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 40vw;\n  position: absolute;\n  left: 20px; }\n\n.currentWeatherMain {\n  display: inline-block;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.currentWeatherInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 100px;\n  margin: 10px; }\n\n.detailsInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 20px;\n  padding-bottom: 5px;\n  margin: 5px; }\n\n.detailsSpecific {\n  display: inline-block;\n  text-align: center;\n  padding-left: 150px;\n  margin: 5px; }\n\n.currentWeatherSummary {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n.daySummaries {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n#currentWeatherDetails {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin-left: 820px;\n  margin-right: 15px;\n  margin-top: 50px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 40vw;\n  position: relative;\n  right: 20px; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#searchAgainBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#searchAgainBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#hourlyWeather {\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin: 10px;\n  height: 120px;\n  width: 97vw;\n  text-align: center; }\n\n#dailyWeather {\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  text-align: center;\n  padding: 10px;\n  margin: 10px;\n  height: 150px;\n  width: 97vw; }\n", ""]);
 
 	// exports
 

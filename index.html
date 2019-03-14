@@ -9,10 +9,18 @@
 <body>
   <nav>
     <h1>Your Sweater Weather</h1>
+    <input id="registerBtn" type="submit" value="Register">
+    <input id="loginBtn" type="submit" value="Login">
   </nav>
   <form class="weather-inquiry">
     <input id="cityStateData" type="text" name="city-state" placeholder="Enter City, State"><br>
     <input id="submitCityStateBtn" type="submit" value="Search For Weather">
+  </form>
+  <form id="register-form">
+    <input id="email" type="email" name="city-state" placeholder="email" required>
+    <input id="password" type="password" placeholder="password" required>
+    <input id="password-confirmation" type="password" placeholder="retype password" required><br>
+    <input id="submitRegistrationBtn" type="submit" value="Register">
   </form>
   <div id="currentWeather">
     <div class="currentWeatherMain">

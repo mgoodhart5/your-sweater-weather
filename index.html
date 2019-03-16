@@ -9,14 +9,27 @@
 <body>
   <nav>
     <h1>Your Sweater Weather</h1>
+    <input id="registerBtn" type="submit" value="Register">
+    <input id="loginBtn" type="submit" value="Login">
   </nav>
   <form class="weather-inquiry">
-    <input id="cityStateData" type="text" name="city-state" placeholder="Enter City, State"><br>
-    <input id="submitCityStateBtn" type="submit" value="Search For Weather">
+    <input id="cityStateData" type="text" placeholder="Enter City, State" required><br>
+    <input id="submitCityStateBtn" type="submit" value="Search For Weather" required>
+  </form>
+  <form id="register-form">
+    <input id="email" type="email" name="city-state" placeholder="email" required>
+    <input id="password" type="password" placeholder="password" required>
+    <input id="password-confirmation" type="password" placeholder="retype password" required><br>
+    <input id="submitRegistrationBtn" type="submit" value="Register">
+  </form>
+  <form id="login-form">
+    <input id="loginEmail" type="email" name="city-state" placeholder="email" required>
+    <input id="loginPassword" type="password" placeholder="password" required>
+    <input id="submitLoginBtn" type="submit" value="Login">
   </form>
   <div id="currentWeather">
     <div class="currentWeatherMain">
-      <p class="icon"></p>
+      <p id="icon1"></p>
       <h1 class="current-temp"></h1>
       <p class="high-low"></p>
     </div>
@@ -109,6 +122,5 @@
 
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
   <script src="main.bundle.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.min.js'></script>
 </body>
 </html>

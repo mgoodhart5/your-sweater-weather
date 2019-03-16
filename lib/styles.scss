@@ -38,6 +38,9 @@ h1 {
 #register-form {
   text-align: center;
 }
+#login-form {
+  text-align: center;
+}
 #email {
   margin: 10px;
   padding: 10px;
@@ -51,6 +54,19 @@ h1 {
   font-size: 15px;
   border-radius: 15px;
 }
+#loginEmail {
+  margin: 10px;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 15px;
+  width: 200px;
+}
+#loginPassword {
+  margin: 10px;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 15px;
+}
 #password-confirmation {
   margin: 10px;
   padding: 10px;
@@ -58,6 +74,13 @@ h1 {
   border-radius: 15px;
 }
 #submitRegistrationBtn {
+  margin: 20px;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: #354F52;
+  color: #CAD2C5;
+}
+#submitLoginBtn {
   margin: 20px;
   padding: 15px;
   border-radius: 15px;

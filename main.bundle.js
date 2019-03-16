@@ -50,9 +50,10 @@
 
 	var currentUserKey; // This file is in the entry point in your webpack config.
 
-	var skycons = new Skycons({ "color": "pink" });
+
 	$(document).ready(function () {
 	  $("#register-form").hide();
+	  $("#login-form").hide();
 	  $("#searchAgainBtn").hide();
 	  $("#currentWeather").hide();
 	  $("#currentWeatherDetails").hide();
@@ -61,12 +62,13 @@
 	  $("#registerBtn").click(function (event) {
 	    event.preventDefault();
 	    $("#register-form").show();
+	    $("#loginBtn").show();
+	    $("#login-form").hide();
 	    $("#searchAgainBtn").hide();
 	    $("#currentWeather").hide();
 	    $("#currentWeatherDetails").hide();
 	    $("#hourlyWeather").hide();
 	    $("#dailyWeather").hide();
-	    $(".weather-inquiry").hide();
 	    $("#registerBtn").hide();
 	    $("#submitRegistrationBtn").click(function (event) {
 	      event.preventDefault();
@@ -95,13 +97,54 @@
 	        }).then(function (object) {
 	          console.log(object.data.attributes.api_key);
 	          currentUserKey = object.data.attributes.api_key;
-	          console.log(currentUserKey);
 	        }).catch(function (error) {
 	          return console.error({ error: error });
 	        });
-	        alert("You are now registered! Please Login to Favorite your Locations!", 2000);
+	        alert("You are now registered and logged in! Feel free to search the weather and favorite a location!");
 	        $("#register-form").hide();
 	        $(".weather-inquiry").show();
+	      };
+	    });
+	  });
+	  $("#loginBtn").click(function (event) {
+	    event.preventDefault();
+	    $("#login-form").show();
+	    $("#register-form").hide();
+	    $("#searchAgainBtn").hide();
+	    $("#currentWeather").hide();
+	    $("#currentWeatherDetails").hide();
+	    $("#hourlyWeather").hide();
+	    $("#dailyWeather").hide();
+	    $("#loginBtn").hide();
+	    $("#submitLoginBtn").click(function (event) {
+	      event.preventDefault();
+	      var loginEmail = $("#loginEmail").val();
+	      var loginPassword = $("#loginPassword").val();
+	      if (loginEmail === "") {
+	        alert("Please fill out email.");
+	      } else if (loginPassword === "") {
+	        alert("Please fill out password.");
+	      } else {
+	        fetch("https://my-sweater-weather.herokuapp.com/api/v1/sessions", {
+	          method: 'POST',
+	          headers: { "Content-Type": "application/json" },
+	          body: JSON.stringify({
+	            email: loginEmail,
+	            password: loginPassword
+	          })
+	        }).then(function (response) {
+	          return response.json();
+	        }).then(function (object) {
+	          console.log(object.data.attributes.api_key);
+	          currentUserKey = object.data.attributes.api_key;
+	          document.cookie = object.data.attributes.api_key;
+	        }).catch(function (error) {
+	          return console.error({ error: error });
+	        });
+	        alert("You are now logged in! Feel free to search the weather and favorite a location!");
+	        $("#login-form").hide();
+	        $(".weather-inquiry").show();
+	        $("#registerBtn").hide();
 	      };
 	    });
 	  });
@@ -126,8 +169,7 @@
 	      $(".location").text(currentLocation["location"]);
 	      $(".summary").text(currentLocation["summary"]);
 	      $(".date-time").text(currentLocation["today"] + ", " + currentLocation["current_time"]);
-	      // $("icon1").text(currentLocation["icon"])
-	      skycons.add("icon1", currentLocation["icon"]);
+	      $("icon1").text(currentLocation["icon"]);
 	      $("#searchAgainBtn").click(function (event) {
 	        event.preventDefault();
 	        $("form").show();
@@ -189,7 +231,6 @@
 	      $(".fourth-precip").text("Precip Probability " + dailyWeather[4]["precip_probability"] + "%");
 	      $(".fifth-precip").text("Precip Probability " + dailyWeather[5]["precip_probability"] + "%");
 	    });
-	    skycons.play;
 	  });
 	});
 
@@ -228,7 +269,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: #52796F;\n  font-family: sans-serif;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-attachment: fixed;\n  height: 200%; }\n\nnav {\n  text-align: center;\n  background: rgba(53, 79, 82, 0.8);\n  color: #CAD2C5;\n  border-radius: 15px;\n  border: 2px solid #2F3E46;\n  width: 98vw;\n  margin-left: 5px;\n  padding: 9px; }\n\nh1 {\n  margin: 5px; }\n\n#loginBtn {\n  padding: 5px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#registerBtn {\n  padding: 5px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#register-form {\n  text-align: center; }\n\n#email {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px;\n  width: 200px; }\n\n#password {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px; }\n\n#password-confirmation {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px; }\n\n#submitRegistrationBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#currentWeather {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin-right: 20px;\n  margin-left: 5px;\n  margin-top: 50px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 45vw;\n  position: absolute;\n  left: 20px; }\n\n.currentWeatherMain {\n  display: inline-block;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.currentWeatherInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 100px;\n  margin: 10px; }\n\n.detailsInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 20px;\n  padding-bottom: 5px;\n  margin: 5px; }\n\n.detailsSpecific {\n  display: inline-block;\n  text-align: center;\n  padding-left: 150px;\n  margin: 5px; }\n\n.currentWeatherSummary {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n.daySummaries {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n#currentWeatherDetails {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin-left: 755px;\n  margin-right: 15px;\n  margin-top: 50px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 45vw;\n  position: relative;\n  right: 20px; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#searchAgainBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#searchAgainBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#hourlyWeather {\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin: 10px;\n  height: 120px;\n  width: 97vw;\n  text-align: center; }\n\n#dailyWeather {\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  text-align: center;\n  padding: 10px;\n  margin: 10px;\n  height: 150px;\n  width: 97vw; }\n", ""]);
+	exports.push([module.id, "body {\n  background-color: #52796F;\n  font-family: sans-serif;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-attachment: fixed;\n  height: 200%; }\n\nnav {\n  text-align: center;\n  background: rgba(53, 79, 82, 0.8);\n  color: #CAD2C5;\n  border-radius: 15px;\n  border: 2px solid #2F3E46;\n  width: 98vw;\n  margin-left: 5px;\n  padding: 9px; }\n\nh1 {\n  margin: 5px; }\n\n#loginBtn {\n  padding: 5px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#registerBtn {\n  padding: 5px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#register-form {\n  text-align: center; }\n\n#login-form {\n  text-align: center; }\n\n#email {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px;\n  width: 200px; }\n\n#password {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px; }\n\n#loginEmail {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px;\n  width: 200px; }\n\n#loginPassword {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px; }\n\n#password-confirmation {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px; }\n\n#submitRegistrationBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitLoginBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#currentWeather {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin-right: 20px;\n  margin-left: 5px;\n  margin-top: 50px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 45vw;\n  position: absolute;\n  left: 20px; }\n\n.currentWeatherMain {\n  display: inline-block;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.currentWeatherInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 100px;\n  margin: 10px; }\n\n.detailsInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 20px;\n  padding-bottom: 5px;\n  margin: 5px; }\n\n.detailsSpecific {\n  display: inline-block;\n  text-align: center;\n  padding-left: 150px;\n  margin: 5px; }\n\n.currentWeatherSummary {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n.daySummaries {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n#currentWeatherDetails {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin-left: 755px;\n  margin-right: 15px;\n  margin-top: 50px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 45vw;\n  position: relative;\n  right: 20px; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#searchAgainBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#searchAgainBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#hourlyWeather {\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin: 10px;\n  height: 120px;\n  width: 97vw;\n  text-align: center; }\n\n#dailyWeather {\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  text-align: center;\n  padding: 10px;\n  margin: 10px;\n  height: 150px;\n  width: 97vw; }\n", ""]);
 
 	// exports
 

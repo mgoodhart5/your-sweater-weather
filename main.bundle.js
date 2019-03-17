@@ -59,6 +59,8 @@
 	  $("#currentWeatherDetails").hide();
 	  $("#hourlyWeather").hide();
 	  $("#dailyWeather").hide();
+	  $("#favorites").hide();
+	  $("#hideFavBtn").hide();
 	  $("#registerBtn").click(function (event) {
 	    event.preventDefault();
 	    $("#register-form").show();
@@ -148,6 +150,58 @@
 	      };
 	    });
 	  });
+	  $("#favoritesAllBtn").click(function (event) {
+	    event.preventDefault();
+	    $("#favorites").show();
+	    $("#hideFavBtn").show();
+	    $("#favoritesAllBtn").hide();
+	    $("#hideFavBtn").click(function (event) {
+	      event.preventDefault();
+	      $("#favorites").hide();
+	      $("#hideFavBtn").hide();
+	      $("#favoritesAllBtn").show();
+	    });
+	    $.get("https://my-sweater-weather.herokuapp.com/api/v1/favorites?api_key=" + document.cookie, function (data, status) {
+	      var favorited = data["data"];
+	      if (favorited[4]) {
+	        $(".fav1").html(favorited[0]["attributes"]["location"] + " <br> " + favorited[0]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[0]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	        $(".fav2").html(favorited[1]["attributes"]["location"] + " <br> " + favorited[1]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[1]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	        $(".fav3").html(favorited[2]["attributes"]["location"] + " <br> " + favorited[2]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[2]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	        $(".fav4").html(favorited[3]["attributes"]["location"] + " <br> " + favorited[3]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[3]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	        $(".fav5").html(favorited[4]["attributes"]["location"] + " <br> " + favorited[4]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[4]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	      } else if (favorited[3]) {
+	        $(".fav1").html(favorited[0]["attributes"]["location"] + " <br> " + favorited[0]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[0]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	        $(".fav2").html(favorited[1]["attributes"]["location"] + " <br> " + favorited[1]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[1]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	        $(".fav3").html(favorited[2]["attributes"]["location"] + " <br> " + favorited[2]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[2]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	        $(".fav4").html(favorited[3]["attributes"]["location"] + " <br> " + favorited[3]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[3]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	      } else if (favorited[2]) {
+	        $(".fav1").html(favorited[0]["attributes"]["location"] + " <br> " + favorited[0]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[0]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	        $(".fav2").html(favorited[1]["attributes"]["location"] + " <br> " + favorited[1]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[1]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	        $(".fav3").html(favorited[2]["attributes"]["location"] + " <br> " + favorited[2]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[2]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	      } else if (favorited[1]) {
+	        $(".fav1").html(favorited[0]["attributes"]["location"] + " <br> " + favorited[0]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[0]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	        $(".fav2").html(favorited[1]["attributes"]["location"] + " <br> " + favorited[1]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[1]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	      } else if (favorited[0]) {
+	        $(".fav1").html(favorited[0]["attributes"]["location"] + " <br> " + favorited[0]["attributes"]["current_weather"]["summary"] + " <input id=\"deleteFavBtn\" class=\"" + favorited[0]["attributes"]["location"] + "\" type=\"submit\" value=\"Delete Me\">");
+	      }
+	      $("#deleteFavBtn").click(function (event) {
+	        event.preventDefault();
+	        $("#favorites").hide();
+	        $("#hideFavBtn").hide();
+	        $("#favoritesAllBtn").show();
+	        $.ajax({
+	          url: "https://my-sweater-weather.herokuapp.com/api/v1/favorites?api_key=" + document.cookie + "&location=" + event.target["classList"]["value"],
+	          type: 'delete',
+	          sucess: function sucess(data, status) {
+	            alert("Success: status code " + status);
+	          },
+	          error: function error(data) {
+	            console.log('Error:', data);
+	          }
+	        });
+	      });
+	    });
+	  });
 	  $("#submitCityStateBtn").click(function (event) {
 	    event.preventDefault();
 	    $("form").hide();
@@ -173,11 +227,32 @@
 	      $("#searchAgainBtn").click(function (event) {
 	        event.preventDefault();
 	        $("form").show();
+	        $("#register-form").hide();
+	        $("#login-form").hide();
 	        $("#searchAgainBtn").hide();
 	        $("#currentWeather").hide();
 	        $("#currentWeatherDetails").hide();
 	        $("#hourlyWeather").hide();
 	        $("#dailyWeather").hide();
+	        $("#favBtn").show();
+	      });
+	      $("#favBtn").click(function (event) {
+	        event.preventDefault();
+	        $("#favorites").hide();
+	        $("#searchAgainBtn").hide();
+	        $("#currentWeather").hide();
+	        $("#currentWeatherDetails").hide();
+	        $("#hourlyWeather").hide();
+	        $("#dailyWeather").hide();
+	        $("#favBtn").hide();
+	        $.post("https://my-sweater-weather.herokuapp.com/api/v1/favorites?api_key=" + document.cookie + "&location=" + cityState, function (data, status) {
+	          $("#searchAgainBtn").show();
+	          $("#currentWeather").show();
+	          $("#currentWeatherDetails").show();
+	          $("#hourlyWeather").show();
+	          $("#dailyWeather").show();
+	          $("#favoritesAllBtn").show();
+	        });
 	      });
 	      var currentWeatherDetails = data["data"]["attributes"]["current_weather_details"];
 	      $(".details-summary").text(currentWeatherDetails["summary"]);
@@ -269,7 +344,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: #52796F;\n  font-family: sans-serif;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-attachment: fixed;\n  height: 200%; }\n\nnav {\n  text-align: center;\n  background: rgba(53, 79, 82, 0.8);\n  color: #CAD2C5;\n  border-radius: 15px;\n  border: 2px solid #2F3E46;\n  width: 98vw;\n  margin-left: 5px;\n  padding: 9px; }\n\nh1 {\n  margin: 5px; }\n\n#loginBtn {\n  padding: 5px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#registerBtn {\n  padding: 5px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#register-form {\n  text-align: center; }\n\n#login-form {\n  text-align: center; }\n\n#email {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px;\n  width: 200px; }\n\n#password {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px; }\n\n#loginEmail {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px;\n  width: 200px; }\n\n#loginPassword {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px; }\n\n#password-confirmation {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px; }\n\n#submitRegistrationBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitLoginBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#currentWeather {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin-right: 20px;\n  margin-left: 5px;\n  margin-top: 50px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 45vw;\n  position: absolute;\n  left: 20px; }\n\n.currentWeatherMain {\n  display: inline-block;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.currentWeatherInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 100px;\n  margin: 10px; }\n\n.detailsInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 20px;\n  padding-bottom: 5px;\n  margin: 5px; }\n\n.detailsSpecific {\n  display: inline-block;\n  text-align: center;\n  padding-left: 150px;\n  margin: 5px; }\n\n.currentWeatherSummary {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n.daySummaries {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n#currentWeatherDetails {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin-left: 755px;\n  margin-right: 15px;\n  margin-top: 50px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 45vw;\n  position: relative;\n  right: 20px; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#searchAgainBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#searchAgainBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#hourlyWeather {\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin: 10px;\n  height: 120px;\n  width: 97vw;\n  text-align: center; }\n\n#dailyWeather {\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  text-align: center;\n  padding: 10px;\n  margin: 10px;\n  height: 150px;\n  width: 97vw; }\n", ""]);
+	exports.push([module.id, "body {\n  background-color: #52796F;\n  font-family: sans-serif;\n  background-size: cover;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-attachment: fixed;\n  height: 200%; }\n\nnav {\n  text-align: center;\n  background: rgba(53, 79, 82, 0.8);\n  color: #CAD2C5;\n  border-radius: 15px;\n  border: 2px solid #2F3E46;\n  width: 98vw;\n  margin-left: 5px;\n  padding: 9px; }\n\nh1 {\n  margin: 5px; }\n\n.fav1 {\n  display: inline-block;\n  padding: 10px; }\n\n.fav2 {\n  display: inline-block;\n  padding: 10px; }\n\n.fav3 {\n  display: inline-block;\n  padding: 10px; }\n\n.fav4 {\n  display: inline-block;\n  padding: 10px; }\n\n.fav5 {\n  display: inline-block;\n  padding: 10px; }\n\n#loginBtn {\n  padding: 5px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#registerBtn {\n  padding: 5px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#favoritesAllBtn {\n  padding: 5px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#hideFavBtn {\n  padding: 5px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#deleteFavBtn {\n  padding: 5px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n.weather-inquiry {\n  text-align: center; }\n\n#register-form {\n  text-align: center; }\n\n#login-form {\n  text-align: center; }\n\n#email {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px;\n  width: 200px; }\n\n#password {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px; }\n\n#loginEmail {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px;\n  width: 200px; }\n\n#loginPassword {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px; }\n\n#password-confirmation {\n  margin: 10px;\n  padding: 10px;\n  font-size: 15px;\n  border-radius: 15px; }\n\n#submitRegistrationBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitLoginBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#currentWeather {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin-right: 20px;\n  margin-left: 5px;\n  margin-top: 50px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 45vw;\n  position: absolute;\n  left: 20px; }\n\n.currentWeatherMain {\n  display: inline-block;\n  text-align: center;\n  padding: 5px;\n  margin: 10px; }\n\n.currentWeatherInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 100px;\n  margin: 10px; }\n\n.detailsInfo {\n  display: inline-block;\n  text-align: center;\n  padding-left: 20px;\n  padding-bottom: 5px;\n  margin: 5px; }\n\n.detailsSpecific {\n  display: inline-block;\n  text-align: center;\n  padding-left: 150px;\n  margin: 5px; }\n\n.currentWeatherSummary {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n.daySummaries {\n  padding-bottom: 15px;\n  margin: 10px;\n  text-align: center; }\n\n#currentWeatherDetails {\n  display: inline-block;\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin-left: 755px;\n  margin-right: 15px;\n  margin-top: 50px;\n  margin-bottom: 10px;\n  height: 260px;\n  width: 45vw;\n  position: relative;\n  right: 20px; }\n\n#cityStateData {\n  margin: 20px;\n  padding: 15px;\n  font-size: 20px;\n  border-radius: 15px; }\n\n#submitCityStateBtn {\n  margin: 20px;\n  padding: 15px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#submitCityStateBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#searchAgainBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#searchAgainBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#favBtn {\n  padding: 10px;\n  border-radius: 15px;\n  background-color: #354F52;\n  color: #CAD2C5; }\n\n#favBtn:hover {\n  background-color: #84898C;\n  color: #CAD2C5; }\n\n#hourlyWeather {\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  padding: 10px;\n  margin: 10px;\n  height: 120px;\n  width: 97vw;\n  text-align: center; }\n\n#dailyWeather {\n  border: 2px solid #2F3E46;\n  background: rgba(132, 169, 140, 0.8);\n  border-radius: 15px;\n  text-align: center;\n  padding: 10px;\n  margin: 10px;\n  height: 150px;\n  width: 97vw; }\n", ""]);
 
 	// exports
 

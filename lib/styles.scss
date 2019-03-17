@@ -20,6 +20,26 @@ nav {
 h1 {
   margin: 5px;
 }
+.fav1 {
+  display: inline-block;
+  padding: 10px;
+}
+.fav2 {
+  display: inline-block;
+  padding: 10px;
+}
+.fav3 {
+  display: inline-block;
+  padding: 10px;
+}
+.fav4 {
+  display: inline-block;
+  padding: 10px;
+}
+.fav5 {
+  display: inline-block;
+  padding: 10px;
+}
 #loginBtn {
   padding: 5px;
   border-radius: 15px;
@@ -27,6 +47,24 @@ h1 {
   color: #CAD2C5;
 }
 #registerBtn {
+  padding: 5px;
+  border-radius: 15px;
+  background-color: #354F52;
+  color: #CAD2C5;
+}
+#favoritesAllBtn {
+  padding: 5px;
+  border-radius: 15px;
+  background-color: #354F52;
+  color: #CAD2C5;
+}
+#hideFavBtn {
+  padding: 5px;
+  border-radius: 15px;
+  background-color: #354F52;
+  color: #CAD2C5;
+}
+#deleteFavBtn {
   padding: 5px;
   border-radius: 15px;
   background-color: #354F52;
@@ -176,6 +214,16 @@ h1 {
   color: #CAD2C5;
 }
 #searchAgainBtn:hover {
+  background-color: #84898C;
+  color: #CAD2C5;
+}
+#favBtn {
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #354F52;
+  color: #CAD2C5;
+}
+#favBtn:hover {
   background-color: #84898C;
   color: #CAD2C5;
 }

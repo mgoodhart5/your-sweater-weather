@@ -1,6 +1,6 @@
 # Your Sweater Weather
 
-A Turing School Project created with JQuery. [Your Sweater Weather](https://mgoodhart5.github.io/your-sweater-weather/) is the front end portion of an API project started in Module 3. The backend I created can be found here [My Sweater Weather](https://my-sweater-weather.herokuapp.com/api/v1/forecast="Denver,Co").
+A Turing School Project created with JavaScript/JQuery (a new language in one week!). [Your Sweater Weather](https://mgoodhart5.github.io/your-sweater-weather/) is the front end portion of an API project started in Module 3. The backend I created can be found here [My Sweater Weather](https://my-sweater-weather.herokuapp.com/api/v1/forecast="Denver,Co").
 
 ![Sweater Weather](/.readme/homer.png)
 
@@ -50,3 +50,6 @@ to run your local server. Once the server is running, visit http://localhost:808
 * [jQuery](https://jquery.com/)
 * HTML
 * CSS
+
+## Known Issues
+Favorites do not instantly show up once they are added. Once all favorites are deleted, this is not reflected until the page is refreshed.

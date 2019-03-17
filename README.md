@@ -1,79 +1,50 @@
-# Self-Directed Front-End Start Kit
+# Your Sweater Weather
 
-## Initial Setup
+A Turing School Project created with JQuery. [Your Sweater Weather](https://mgoodhart5.github.io/your-sweater-weather/) is the front end portion of an API project started in Module 3. The backend I created can be found here [My Sweater Weather](https://my-sweater-weather.herokuapp.com/api/v1/forecast="Denver,Co").
 
-1. Clone this starter kit repository and rename the repository to anything you'd like in one command:
+![Sweater Weather](/.readme/homer.png)
 
-  ```shell
-  git clone git@github.com:turingschool-projects/self-directed-fe-starter.git <name of your choice>
-  ```
-2. Change into the new director directory.
+![Sweater Weather](/.readme/intro.jpg)
 
-3. Remove the default remote (origin):
+## Learning Goals
 
-  ```shell
-  git remote rm origin
-  ```
+To create a front-end to consume my fully-tested Rails API from Module 3.
 
-4. Create a new repository on GitHub.
+* Create a vanilla JS or jQuery front-end application that makes network requests to an API
 
-5. Add your new repository remote - **your remote URL and user name will be different in the command below**
+![Sweater Weather](/.readme/favs.jpg)
 
-  ```shell
-  git remote add origin git@github.com:<YOUR GITHUB NAME>/<PROJECT NAME>.git
-  ```
+## Getting Started
+```
+Clone down this repo!
 
-6. Install the dependencies of the starter kit:
+```
+```
+git clone https://github.com/mgoodhart5/your-sweater-weather
+```
+### Installing
 
-  ```shell
-  npm install
-  ```
+cd into `your-sweater-weather`
 
-7. Add, commit, and push up to your repository:
+In your terminal, run
+`npm install`.
 
-  ```shell
-  git add .
-  git commit -m "Initial commit using starter kit"
-  git push origin master
-  ```
+## Deployment
+
+This is deployed on github pages at https://mgoodhart5.github.io/your-sweater-weather/.
 
 ## Running the Server Locally
+![Sweater Weather](/.readme/jacksonhole.png)
 
-To see your code in action locally, you need to fire up a development server. Use the command:
+Use the command:
 
-```shell
+```
 npm start
 ```
-
-Once the server is running, visit in your browser:
-
-* `http://localhost:8080/` to run your application.
-
-
-## GitHub Pages Setup
-
-This site will be served from GitHub Pages in production.
-
-In order to see your application running on production:
-
-1. From the command line, run `npm run build`.
-
-2. Commit and push your application to GitHub.
-
-3. Visit your repository on Github
-
-4. Go to Settings
-
-5. Under the Github Pages section of Options, select 'master' as your source and click `Save`
-
-Be sure to `npm run build` and commit before each push to master. A few seconds after you push up, you should be able to see your application at <https://your-github-username.github.io/project-name>.
+to run your local server. Once the server is running, visit http://localhost:8080/ to see the application.
 
 
 ## Built With
 
 * [JavaScript](https://www.javascript.com/)
 * [jQuery](https://jquery.com/)
-* [Express](https://expressjs.com/)
-* [Mocha](https://mochajs.org/)
-* [Chai](https://chaijs.com/)
-

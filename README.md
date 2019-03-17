@@ -16,10 +16,7 @@ To create a front-end to consume my fully-tested Rails API from Module 3.
 
 ## Getting Started
 ```
-Clone down this repo!
-
-```
-```
+Clone down this repo:
 git clone https://github.com/mgoodhart5/your-sweater-weather
 ```
 ### Installing
@@ -52,4 +49,4 @@ to run your local server. Once the server is running, visit http://localhost:808
 * CSS
 
 ## Known Issues
-Favorites do not instantly show up once they are added. Once all favorites are deleted, this is not reflected until the page is refreshed.
+Favorites do not instantly show up once they are added. Favorites can only be deleted in the order they were added. Once all favorites are deleted, this is not reflected until the page is refreshed.

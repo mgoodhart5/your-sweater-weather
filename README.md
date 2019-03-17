@@ -48,3 +48,5 @@ to run your local server. Once the server is running, visit http://localhost:808
 
 * [JavaScript](https://www.javascript.com/)
 * [jQuery](https://jquery.com/)
+* HTML
+* CSS
